@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="container footer__inner">
         <div>
-          <strong>Nodo Digital S.A.S.</strong>
+          <strong>Sur Digital S.A.S.</strong>
           <p>Software a la medida para empresas que quieren crecer con orden.</p>
         </div>
         <nav aria-label="Pie de página">
@@ -15,7 +15,7 @@ export default function Footer() {
         </nav>
       </div>
       <div className="container footer__legal">
-        © {new Date().getFullYear()} Nodo Digital S.A.S. Todos los derechos reservados.
+        © {new Date().getFullYear()} Sur Digital S.A.S. Todos los derechos reservados.
       </div>
     </footer>
   )

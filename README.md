@@ -1,4 +1,17 @@
-# Nodo Digital – React + Vite + React Router DOM
+# Sur Digital – React + Vite + React Router DOM
+
+## Estructura del proyecto
+
+```text
+src/
+├── assets/images/   Imágenes del carrusel
+├── components/      Componentes compartidos (encabezado, pie y carrusel)
+├── data/            Datos de las diapositivas
+├── pages/           Vistas asociadas a las rutas
+├── App.jsx          Rutas y estructura general
+├── index.css        Estilos globales y de las vistas
+└── main.jsx         Punto de entrada de React
+```
 
 ## Cómo ejecutarlo
 ```bash

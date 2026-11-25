@@ -21,7 +21,7 @@ export default function Header() {
             <circle cx="46" cy="46" r="6" fill="#F2B134" />
             <path d="M20 32L46 18M20 32L46 46" stroke="#F3F5F7" strokeWidth="3" />
           </svg>
-          Nodo Digital
+          Sur Digital
         </Link>
 
         <button

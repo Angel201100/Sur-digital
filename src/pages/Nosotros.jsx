@@ -3,7 +3,7 @@ export default function Nosotros() {
     <section className="page container">
       <h1>¿Quiénes somos?</h1>
       <p className="lead">
-        Nodo Digital es una empresa de desarrollo de software que ayuda a pequeñas y medianas
+        Sur Digital es una empresa de desarrollo de software que ayuda a pequeñas y medianas
         empresas a pasar de procesos manuales a sistemas claros, seguros y fáciles de usar.
       </p>
 
