@@ -1,6 +1,6 @@
 const datos = [
   { etiqueta: 'Correo electrónico', valor: 'miguelangel0rojas.2@gmail.com', href: 'mailto:miguelangel0rojas.2@gmail.com' },
-  { etiqueta: 'Teléfono', valor: '+57 300 000 0000', href: 'tel:+573000000000' },
+  { etiqueta: 'Teléfono', valor: '+57 311 700 6818', href: 'tel:+573117006818' },
   { etiqueta: 'Dirección', valor: 'Calle 10 # 20-30, Oficina 701' },
   { etiqueta: 'Horario', valor: 'Lunes a viernes, 8:00 a. m. a 5:00 p. m.' },
 ]
