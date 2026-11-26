@@ -1,0 +1,13 @@
+.env
+backend/.env
+frontend/.env
+backend/.venv/
+frontend/node_modules/
+node_modules/
+.vite/
+**/__pycache__/
+.pytest_cache/
+*.py[cod]
+*.db
+frontend/dist/
+coverage/
