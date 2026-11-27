@@ -45,7 +45,7 @@ def register(payload: RegisterRequest, db: Session = Depends(get_db)) -> Message
     try:
         validate_password(payload.password, payload.first_name, payload.last_name)
     except ValueError as error:
-        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(error)) from error
+        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_CONTENT, detail=str(error)) from error
 
     client_role = db.scalar(select(Role).where(Role.code == "client", Role.is_active.is_(True)))
     if client_role is None:
@@ -156,7 +156,7 @@ def confirm_password_reset(
     try:
         validate_password(payload.new_password, user.first_name, user.last_name)
     except ValueError as error:
-        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(error)) from error
+        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_CONTENT, detail=str(error)) from error
 
     user.password_hash = hash_password(payload.new_password)
     reset.used_at = datetime.now(timezone.utc)

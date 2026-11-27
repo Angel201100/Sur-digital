@@ -42,7 +42,7 @@ def _commit_or_conflict(db: Session, error_message: str) -> None:
 def _get_role(db: Session, role_id: uuid.UUID) -> Role:
     role = db.get(Role, role_id)
     if role is None or not role.is_active:
-        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail="El rol seleccionado no existe o está inactivo.")
+        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_CONTENT, detail="El rol seleccionado no existe o está inactivo.")
     return role
 
 
@@ -67,7 +67,7 @@ def _create_user(db: Session, payload: AdminUserCreate, role: Role) -> UserOut:
     try:
         validate_password(payload.password, payload.first_name, payload.last_name)
     except ValueError as error:
-        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(error)) from error
+        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_CONTENT, detail=str(error)) from error
     user = User(
         first_name=payload.first_name.strip(),
         last_name=payload.last_name.strip(),
@@ -96,7 +96,7 @@ def _update_user(
     changes = {key: value for key, value in payload.model_dump(exclude_unset=True).items() if value is not None}
     if "role_id" in changes:
         if role_code == "client" and changes["role_id"] != user.role_id:
-            raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail="No se puede cambiar el rol desde la gestión de clientes.")
+            raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_CONTENT, detail="No se puede cambiar el rol desde la gestión de clientes.")
         _get_role(db, changes["role_id"])
     if "email" in changes:
         changes["email"] = str(changes["email"]).lower()
@@ -157,7 +157,7 @@ def create_user(
     _: User = Depends(require_permission("users.create")),
 ) -> UserOut:
     if payload.role_id is None:
-        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail="Selecciona un rol.")
+        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_CONTENT, detail="Selecciona un rol.")
     return _create_user(db, payload, _get_role(db, payload.role_id))
 
 
@@ -285,7 +285,7 @@ def set_role_permissions(
     unique_ids = set(payload.permission_ids)
     permissions = list(db.scalars(select(Permission).where(Permission.id.in_(unique_ids)))) if unique_ids else []
     if len(permissions) != len(unique_ids):
-        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail="La lista contiene permisos inexistentes.")
+        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_CONTENT, detail="La lista contiene permisos inexistentes.")
     role.permissions = permissions
     _commit_or_conflict(db, "No se pudieron guardar los permisos del rol.")
     return _serialize_role(role)
